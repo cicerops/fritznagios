@@ -1,10 +1,10 @@
 """
 fritznagios.py
 
-Module for Nagios to query the FritzBox API for available services and actions.
+Module for Nagios/Icinga2 to query the FritzBox API for available services and actions.
 CLI interface.
 
-This module is depends on the FritzConnection package.
+This module depends on the FritzConnection package.
 https://github.com/kbr/fritzconnection
 License: MIT (https://opensource.org/licenses/MIT)
 Author: Klaus Bremer
@@ -143,7 +143,7 @@ class Nagios:
             use_tls=args.encrypt,
         )
 
-    def get_cli_arguments(self, scan_additional_arguments=None):
+    def get_cli_arguments(self):
         parser = argparse.ArgumentParser()
         parser.add_argument('-i', '--ip-address',
                             nargs='?', default=FRITZ_IP_ADDRESS, const=None,
@@ -172,8 +172,6 @@ class Nagios:
         parser.add_argument('-c', '--critical',
                             nargs='?', default=False, const=True,
                             help='set critical level')
-        #if scan_additional_arguments:
-        #    scan_additional_arguments(parser)
         args = parser.parse_args()
         return args
 
