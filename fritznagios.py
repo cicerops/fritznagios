@@ -33,7 +33,6 @@ class Nagios:
         self.args = self.get_cli_arguments()
         self.state = 'OK'
 
-
     def set_fs(self):
         self.fs = self.get_instance(FritzStatus, self.args)
 
@@ -46,13 +45,13 @@ class Nagios:
             try:
                 self.args.warning = int(self.args.warning)
             except:
-                print("Exit: -w Warning Level as Int required.")
+                print("Exit: -w Warning level as int required.")
                 exit()
         if self.args.critical:
             try:
                 self.args.critical = int(self.args.critical)
             except:
-                print("Error: -c Critical Level as Int required.")
+                print("Error: -c Critical level as int required.")
                 exit()
         if self.args.mode not in self.modes:
             print('Exit: -m Requires something like %s' % self.modes)
@@ -74,21 +73,21 @@ class Nagios:
         bytes_received = self.get_information('bytes_received')
         bytes_sent = bytes_sent/1000
         bytes_received = bytes_received/1000
-        levels = 'KB'
-        levelr = 'KB'
+        unit_s = 'KB'
+        unit_r = 'KB'
         if bytes_sent > 1024:
             bytes_sent = round(bytes_sent/1000, 2)
-            levels = 'MB'
+            unit_s = 'MB'
         if bytes_sent > 1024:
             bytes_sent = round(bytes_sent/1000, 2)
-            levels = 'GB'
+            unit_s = 'GB'
         if bytes_received > 1024:
             bytes_received = round(bytes_received/1000, 2)
-            levelr = 'MB'
+            unit_r = 'MB'
         if bytes_received > 1024:
             bytes_received = round(bytes_received/1000, 2)
-            levelr = 'GB'
-        print(self.state + ' - received:%s' % bytes_received + levelr + ' sent:%s' % bytes_sent + levels)
+            unit_r = 'GB'
+        print(self.state + ' - received: %s' % bytes_received + unit_r + ' sent: %s' % bytes_sent + unit_s)
 
     def ip(self):
         counter = 0
