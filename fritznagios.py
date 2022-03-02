@@ -39,7 +39,7 @@ class Nagios:
     def main(self):
         if self.args.mode == 'uptime':
             if not self.args.password:
-                print("Exit: password required.")
+                print("Exit: -p password required.")
                 exit()
         if self.args.warning:
             try:
@@ -66,7 +66,7 @@ class Nagios:
         connection_uptime = self.get_information('connection_uptime')
         device_uptime = str(datetime.timedelta(seconds=device_uptime))
         connection_uptime = str(datetime.timedelta(seconds=connection_uptime))
-        print(self.state + ' - Uptime: %s ConnectionUptime: %s' % (device_uptime, connection_uptime))
+        print(self.state + ' - DeviceUptime: %s ConnectionUptime: %s' % (device_uptime, connection_uptime))
 
     def bytes(self):
         bytes_sent = self.get_information('bytes_sent')
