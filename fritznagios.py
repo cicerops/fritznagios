@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 fritznagios.py
 
@@ -13,48 +14,52 @@ Edited by: Jan Hoffmann
 
 from fritzconnection.core.exceptions import FritzServiceError, FritzActionError
 from fritzconnection.lib.fritzstatus import FritzStatus
-from utils import get_cli_arguments, get_instance
+from fritzconnection.core.fritzconnection import (
+    FritzConnection,
+    FRITZ_IP_ADDRESS,
+    FRITZ_TCP_PORT,
+)
 import math
 import ipaddress
 import datetime
+import argparse
+import os
 
 
 class Nagios:
     def __init__(self):
-        self.args = get_cli_arguments()
-        self.fs = get_instance(FritzStatus, self.args)
+        self.fs = None
+        self.args = self.get_cli_arguments()
         self.state = 'OK'
+
+    def set_fs(self):
+        self.fs = self.get_instance(FritzStatus, self.args)
 
     def main(self):
         modes = ['ip', 'uptime', 'bytes', 'bitrate']
-        if not self.args.password:
-            print("Exit: password required.")
-            exit()
-        if not self.args.warning:
-            print("Exit: -w Warning Level required.")
-            exit()
-        try:
-            self.args.warning = int(self.args.warning)
-        except:
-            print("Exit: -w Warning Level as Int required.")
-            exit()
-        if not self.args.critical:
-            print("Exit: -c Critical Level required.")
-            exit()
-        try:
-            self.args.critical = int(self.args.critical)
-        except:
-            print("Error: -c Critical Level as Int required.")
-            exit()
-        if not self.args.mode:
-            print("Exit: -m Mode required.")
-            exit()
-        if not self.args.mode in modes:
+        if self.args.mode == 'uptime':
+            if not self.args.password:
+                print("Exit: password required.")
+                exit()
+        if self.args.warning:
+            try:
+                self.args.warning = int(self.args.warning)
+            except:
+                print("Exit: -w Warning Level as Int required.")
+                exit()
+        if self.args.critical:
+            try:
+                self.args.critical = int(self.args.critical)
+            except:
+                print("Error: -c Critical Level as Int required.")
+                exit()
+        if self.args.mode not in modes:
             print('Exit: -m Requires something like %s' % modes)
-            exit()
         else:
-            fun = getattr(Nagios, self.args.mode)
-            fun(self)
+            self.set_fs()
+            if self.args.mode in modes:
+                fun = getattr(Nagios, self.args.mode)
+                fun(self)
 
     def uptime(self):
         device_uptime = self.get_information('device_uptime')
@@ -129,6 +134,49 @@ class Nagios:
             self.state = 'WARNING'
         if self.args.critical > value:
             self.state = 'CRITICAL'
+
+    def get_instance(self, cls, args):
+        return cls(
+            address=args.address,
+            port=args.port,
+            user=args.username,
+            password=args.password,
+            use_tls=args.encrypt,
+        )
+
+    def get_cli_arguments(self, scan_additional_arguments=None):
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-i', '--ip-address',
+                            nargs='?', default=FRITZ_IP_ADDRESS, const=None,
+                            dest='address',
+                            help='Specify ip-address of the FritzBox to connect to.'
+                                 'Default: %s' % FRITZ_IP_ADDRESS)
+        parser.add_argument('--port',
+                            nargs='?', default=None, const=None,
+                            help='Port of the FritzBox to connect to. '
+                                 'Default: %s' % FRITZ_TCP_PORT)
+        parser.add_argument('-u', '--username',
+                            nargs='?', default=os.getenv('FRITZ_USERNAME', None),
+                            help='Fritzbox authentication username')
+        parser.add_argument('-p', '--password',
+                            nargs='?', default=os.getenv('FRITZ_PASSWORD', None),
+                            help='Fritzbox authentication password')
+        parser.add_argument('-e', '--encrypt',
+                            nargs='?', default=False, const=True,
+                            help='use secure connection')
+        parser.add_argument('-mode', '--mode',
+                            nargs='?', default="bitrate", const=True,
+                            help='set check mode')
+        parser.add_argument('-w', '--warning',
+                            nargs='?', default=False, const=True,
+                            help='set warning level')
+        parser.add_argument('-c', '--critical',
+                            nargs='?', default=False, const=True,
+                            help='set critical level')
+        #if scan_additional_arguments:
+        #    scan_additional_arguments(parser)
+        args = parser.parse_args()
+        return args
 
 
 if __name__ == "__main__":
