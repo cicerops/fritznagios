@@ -13,8 +13,7 @@ Edited by: Jan Hoffmann
 
 from fritzconnection.core.exceptions import FritzServiceError, FritzActionError
 from fritzconnection.lib.fritzstatus import FritzStatus
-from utils import get_cli_arguments, get_instance #, print_header
-#from fritzconnection.cli.utils import get_cli_arguments, get_instance #, print_header
+from utils import get_cli_arguments, get_instance
 import math
 import ipaddress
 import datetime
