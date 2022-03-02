@@ -28,14 +28,16 @@ import os
 class Nagios:
     def __init__(self):
         self.fs = None
+        self.modes = ['ip', 'uptime', 'bytes', 'bitrate']
+        self.default_mode = self.modes[0]
         self.args = self.get_cli_arguments()
         self.state = 'OK'
+
 
     def set_fs(self):
         self.fs = self.get_instance(FritzStatus, self.args)
 
     def main(self):
-        modes = ['ip', 'uptime', 'bytes', 'bitrate']
         if self.args.mode == 'uptime':
             if not self.args.password:
                 print("Exit: password required.")
@@ -52,11 +54,11 @@ class Nagios:
             except:
                 print("Error: -c Critical Level as Int required.")
                 exit()
-        if self.args.mode not in modes:
-            print('Exit: -m Requires something like %s' % modes)
+        if self.args.mode not in self.modes:
+            print('Exit: -m Requires something like %s' % self.modes)
         else:
             self.set_fs()
-            if self.args.mode in modes:
+            if self.args.mode in self.modes:
                 fun = getattr(Nagios, self.args.mode)
                 fun(self)
 
@@ -163,9 +165,9 @@ class Nagios:
         parser.add_argument('-e', '--encrypt',
                             nargs='?', default=False, const=True,
                             help='use secure connection')
-        parser.add_argument('-mode', '--mode',
-                            nargs='?', default="bitrate", const=True,
-                            help='set check mode')
+        parser.add_argument('-m', '--mode',
+                            nargs='?', default=self.default_mode, const=True,
+                            help='set a check mode: %s' % self.modes + ' default: %s' % self.default_mode)
         parser.add_argument('-w', '--warning',
                             nargs='?', default=False, const=True,
                             help='set warning level')
