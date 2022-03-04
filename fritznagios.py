@@ -177,6 +177,10 @@ class Nagios:
         return args
 
 
-if __name__ == "__main__":
+def main():
     nagios = Nagios()
     nagios.main()
+
+
+if __name__ == "__main__":
+    main()
