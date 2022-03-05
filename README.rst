@@ -4,6 +4,15 @@ Fritznagios
 
 
 *****
+Setup
+*****
+
+::
+
+    pip install git+https://github.com/cicerops/fritznagios
+
+
+*****
 Usage
 *****
 
@@ -20,7 +29,12 @@ command configuration file.
 Development
 ***********
 
-::
+Acquire sources::
+
+    git clone https://github.com/cicerops/fritznagios
+    cd fritznagios
+
+Install program in development mode::
 
     python3 -m venv .venv
     source .venv/bin/activate
