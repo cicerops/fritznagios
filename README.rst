@@ -11,6 +11,11 @@ Setup
 
     pip install git+https://github.com/cicerops/fritznagios
 
+For integrating into Icinga 2, you can use the ``fritznagios-icinga2.conf``
+command configuration file. You can easily acquire it using::
+
+    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/fritznagios-icinga2.conf
+
 
 *****
 Usage
@@ -19,9 +24,6 @@ Usage
 ::
 
     fritznagios --help
-
-For integrating into Icinga 2, you can use the ``fritznagios-icinga2.conf``
-command configuration file.
 
 
 
