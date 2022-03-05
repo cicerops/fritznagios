@@ -11,11 +11,6 @@ Setup
 
     pip install git+https://github.com/cicerops/fritznagios
 
-For integrating into Icinga 2, you can use the ``fritznagios-icinga2.conf``
-command configuration file. You can easily acquire it using::
-
-    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/fritznagios-icinga2.conf
-
 
 *****
 Usage
@@ -41,3 +36,16 @@ Install program in development mode::
     python3 -m venv .venv
     source .venv/bin/activate
     pip install --editable=.
+
+
+
+********
+Icinga 2
+********
+
+For integrating the check program into Icinga 2, you can use the configuration files
+in the ``icinga2`` subdirectory. You can easily acquire the files using::
+
+    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-command.conf
+    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-services.conf
+    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-host.conf
