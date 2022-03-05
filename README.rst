@@ -11,6 +11,10 @@ Usage
 
     fritznagios --help
 
+For integrating into Icinga 2, you can use the ``fritznagios-icinga2.conf``
+command configuration file.
+
+
 
 ***********
 Development
