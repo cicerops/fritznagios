@@ -4,6 +4,13 @@ Fritznagios
 
 
 *****
+About
+*****
+
+Nagios/Icinga monitoring check program based on the excellent `fritzconnection`_ module.
+
+
+*****
 Setup
 *****
 
@@ -20,6 +27,17 @@ Usage
 
     fritznagios --help
 
+
+********
+Icinga 2
+********
+
+For integrating the check program into Icinga 2, you can use the configuration files
+in the ``icinga2`` subdirectory. You can easily acquire the files using::
+
+    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-command.conf
+    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-services.conf
+    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-host.conf
 
 
 ***********
@@ -39,13 +57,4 @@ Install program in development mode::
 
 
 
-********
-Icinga 2
-********
-
-For integrating the check program into Icinga 2, you can use the configuration files
-in the ``icinga2`` subdirectory. You can easily acquire the files using::
-
-    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-command.conf
-    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-services.conf
-    wget https://raw.githubusercontent.com/cicerops/fritznagios/main/icinga2/fritznagios-host.conf
+.. _fritzconnection: https://github.com/kbr/fritzconnection
