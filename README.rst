@@ -16,7 +16,8 @@ Setup
 
 ::
 
-    pip install git+https://github.com/cicerops/fritznagios
+    python3 -m venv /opt/fritznagios
+    /opt/fritznagios/bin/pip install git+https://github.com/cicerops/fritznagios
 
 
 *****
