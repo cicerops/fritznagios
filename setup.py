@@ -12,7 +12,7 @@ long_description = read("README.md")
 
 setup(
     name="fritznagios",
-    version="0.0.0",
+    version="0.1.0",
     url="https://github.com/cicerops/fritznagios",
     author="Jan Hoffmann",
     author_email="jan.hoffmann@bergamsee.de",

@@ -1,5 +1,11 @@
 # Fritznagios
 
+[![Status](https://img.shields.io/pypi/status/fritznagios.svg?style=flat-square)](https://pypi.org/project/fritznagios/)
+[![License](https://img.shields.io/github/license/cicerops/fritznagios.svg?style=flat-square)](https://github.com/cicerops/fritznagios/blob/main/LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/fritznagios.svg?style=flat-square)](https://pypi.org/project/fritznagios/)
+[![Python versions](https://img.shields.io/pypi/pyversions/fritznagios.svg?style=flat-square)](https://pypi.org/project/fritznagios/)
+[![Downloads](https://img.shields.io/pypi/dm/fritznagios.svg?style=flat-square)](https://pypi.org/project/fritznagios/)
+
 ## About
 
 Nagios/Icinga monitoring check program for FRITZ!Box devices based on the
