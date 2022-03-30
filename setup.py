@@ -10,7 +10,7 @@ def read(path):
         return f.read()
 
 
-long_description = read("README.rst")
+long_description = read("README.md")
 
 setup(
     name="fritznagios",
@@ -20,7 +20,7 @@ setup(
     author_email="jan.hoffmann@bergamsee.de",
     description="Monitoring sensor for Fritzboxes",
     long_description=long_description,
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     platforms=["any"],
     license="MIT",
     keywords="AVM, FRITZ!Box, fritzbox, fritz, Nagios, Icinga",
