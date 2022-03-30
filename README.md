@@ -20,11 +20,16 @@ Icinga Exchange: https://exchange.icinga.com/tonke/fritznagios
 ## Setup
 
     python3 -m venv /opt/fritznagios
+
+    # Install latest stable version.
+    /opt/fritznagios/bin/pip install fritznagios
+
+    # Install from repository.
     /opt/fritznagios/bin/pip install git+https://github.com/cicerops/fritznagios
 
 ## Usage
 
-    fritznagios --help
+    /opt/fritznagios/bin/fritznagios --help
 
 ## Icinga 2
 
