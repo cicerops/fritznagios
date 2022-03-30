@@ -2,8 +2,14 @@
 
 ## About
 
-Nagios/Icinga monitoring check program for FRITZ!Box based on the excellent
-[fritzconnection](https://github.com/kbr/fritzconnection) module.
+Nagios/Icinga monitoring check program for FRITZ!Box devices based on the
+excellent [fritzconnection] module for maximum device coverage. It uses
+the TR-064 protocol over [UPnP].
+
+Icinga Exchange: https://exchange.icinga.com/tonke/fritznagios
+
+[fritzconnection]: https://github.com/kbr/fritzconnection
+[UPnP]: https://en.wikipedia.org/wiki/Universal_Plug_and_Play
 
 ## Setup
 

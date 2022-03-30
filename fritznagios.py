@@ -2,19 +2,17 @@
 fritznagios.py
 
 Module for Nagios/Icinga2 to query the FritzBox API for available services and actions.
-CLI interface.
 
-This module depends on the FritzConnection package.
-https://github.com/kbr/fritzconnection
 License: MIT (https://opensource.org/licenses/MIT)
-Author: Klaus Bremer
-Edited by: Jan Hoffmann
-"""
+Author: Jan Hoffmann
+Source: https://github.com/cicerops/fritznagios
 
+This module depends on the FritzConnection module.
+Source: https://github.com/kbr/fritzconnection
+"""
 from fritzconnection.core.exceptions import FritzServiceError, FritzActionError
 from fritzconnection.lib.fritzstatus import FritzStatus
 from fritzconnection.core.fritzconnection import (
-    FritzConnection,
     FRITZ_IP_ADDRESS,
     FRITZ_TCP_PORT,
 )
