@@ -57,4 +57,5 @@ Install program in development mode:
 Build and upload sdist package to PyPI:
 
     python setup.py sdist
-    pip install twine && twine upload --skip-existing dist/*
+    pip install twine
+    twine upload --skip-existing dist/*
