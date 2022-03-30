@@ -53,3 +53,8 @@ Install program in development mode:
     python3 -m venv .venv
     source .venv/bin/activate
     pip install --editable=.
+
+Build and upload sdist package to PyPI:
+
+    python setup.py sdist
+    pip install twine && twine upload --skip-existing dist/*
