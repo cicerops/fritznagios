@@ -12,10 +12,10 @@ long_description = read("README.md")
 
 setup(
     name="fritznagios",
-    version="0.1.1",
+    version="0.1.2",
     url="https://github.com/cicerops/fritznagios",
     author="Jan Hoffmann",
-    author_email="jan.hoffmann@bergamsee.de",
+    author_email="jan.hoffmann@cicerops.de",
     description="Nagios/Icinga monitoring check program for FRITZ!Box devices",
     long_description=long_description,
     long_description_content_type="text/markdown",
